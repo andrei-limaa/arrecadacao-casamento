@@ -1,0 +1,439 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lista de Contribuições 💍</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .container-lista {
+
+            width: 100%;
+
+            max-width: 850px;
+
+            margin: 40px auto;
+        }
+
+        .titulo-painel {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 3rem;
+
+            color: #556b2f;
+
+            margin-bottom: 5px;
+        }
+
+        .subtitulo-painel {
+
+            color: #7FA653;
+
+            margin-bottom: 30px;
+
+            font-size: 0.95rem;
+        }
+
+        .quadro-total {
+
+            background: #f7f8f2;
+
+            padding: 25px;
+
+            border-radius: 25px;
+
+            margin: 25px 0;
+
+            border: 1px solid #dfe9c8;
+
+            text-align: center;
+
+            box-shadow: 0 8px 20px rgba(99, 120, 61, 0.05);
+        }
+
+        .texto-total {
+
+            color: #7FA653;
+
+            font-size: 13px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            font-weight: 600;
+        }
+
+        .valor-total {
+
+            margin-top: 10px;
+
+            color: #556b2f;
+
+            font-size: 2.5rem;
+
+            font-weight: bold;
+        }
+
+        .tabela-wrapper {
+
+            overflow-x: auto;
+
+            background: white;
+
+            border-radius: 25px;
+
+            box-shadow: 0 10px 25px rgba(99, 120, 61, 0.08);
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        thead {
+
+            background: #f7f8f2;
+        }
+
+        th {
+
+            border-bottom: 1px solid #dfe9c8;
+
+            color: #556b2f;
+
+            padding: 18px;
+
+            text-align: left;
+
+            text-transform: uppercase;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+        }
+
+        td {
+
+            padding: 18px;
+
+            border-bottom: 1px solid #eef2e5;
+
+            color: #4f5f32;
+        }
+
+        tr:hover {
+
+            background: #fafcf7;
+        }
+
+        .nome-convidado {
+
+            font-weight: 600;
+
+            text-transform: capitalize;
+        }
+
+        .valor-contribuicao {
+
+            text-align: right;
+
+            font-weight: bold;
+
+            color: #556b2f;
+        }
+
+        .data-contribuicao {
+
+            text-align: center;
+
+            color: #7FA653;
+
+            font-size: 0.9rem;
+        }
+
+        .status {
+
+            text-align: center;
+        }
+
+        .status-pago {
+
+            background: #dff3e4;
+
+            color: #1e6b36;
+
+            padding: 8px 16px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            display: inline-block;
+        }
+
+        .status-pendente {
+
+            background: #fff4d6;
+
+            color: #8a6700;
+
+            padding: 8px 16px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            display: inline-block;
+        }
+
+        .sem-contribuicao {
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: #7FA653;
+        }
+
+        .btn-voltar {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+            color: #63783D;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .btn-voltar:hover {
+
+            transform: translateX(-5px);
+        }
+
+        hr {
+
+            border: 0;
+
+            border-top: 1px solid #dfe9c8;
+
+            margin: 30px 0 10px 0;
+        }
+
+        @media (max-width: 768px) {
+
+            .titulo-painel {
+
+                font-size: 2.3rem;
+            }
+
+            th,
+            td {
+
+                font-size: 12px;
+
+                padding: 12px;
+            }
+
+            .valor-total {
+
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container container-lista">
+
+        <!-- Título -->
+        <h1 class="titulo-painel">
+
+            <i class="fa-regular fa-gem"></i>
+
+            Lista de Presentes
+
+        </h1>
+
+        <p class="subtitulo-painel">
+
+            Painel de Controle — Jefferson & Carla 🌿
+
+        </p>
+
+        <!-- Total -->
+        <div class="quadro-total">
+
+            <span class="texto-total">
+
+                <i class="fa-solid fa-wallet"></i>
+
+                Total arrecadado
+
+            </span>
+
+            <div class="valor-total">
+
+                R$ {{ total }}
+
+            </div>
+
+        </div>
+
+        <!-- Tabela -->
+        <div class="tabela-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            <i class="fa-solid fa-user"></i>
+                            Convidado
+                        </th>
+
+                        <th style="text-align: center;">
+                            <i class="fa-solid fa-calendar"></i>
+                            Data
+                        </th>
+
+                        <th style="text-align: right;">
+                            <i class="fa-solid fa-money-bill"></i>
+                            Valor
+                        </th>
+
+                        <th style="text-align: center;">
+                            <i class="fa-solid fa-check"></i>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in contribuicoes %}
+
+                    <tr>
+
+                        <td class="nome-convidado">
+
+                            {{ item.nome }}
+
+                        </td>
+
+                        <td class="data-contribuicao">
+
+                            {{ item.data|date:"d/m/Y" }}
+
+                        </td>
+
+                        <td class="valor-contribuicao">
+
+                            R$ {{ item.valor }}
+
+                        </td>
+
+                        <td class="status">
+
+                            {% if item.status == 'approved' %}
+
+                            <span class="status-pago">
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                                Pago
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="status-pendente">
+
+                                <i class="fa-solid fa-clock"></i>
+
+                                Pendente
+
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="4" class="sem-contribuicao">
+
+                            <i class="fa-solid fa-seedling"></i>
+
+                            Nenhuma contribuição ainda 🌿
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <hr>
+
+        <!-- Voltar -->
+        <a href="/" class="btn-voltar">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar ao início
+
+        </a>
+
+    </div>
+
+</body>
+
+</html>

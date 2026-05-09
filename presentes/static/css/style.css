@@ -1,0 +1,320 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #edf2e2, #f8f8f4);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+
+    background: white;
+
+    padding: 35px;
+
+    margin: 20px auto;
+
+    width: 480px;
+
+    max-width: 95%;
+
+    border-radius: 28px;
+
+    box-shadow: 0 20px 40px rgba(99, 120, 61, 0.10);
+
+    box-sizing: border-box;
+
+    transition: 0.3s ease;
+}
+
+/* Logo e títulos */
+.logo-casamento {
+
+    margin-top: 10px;
+
+    margin-bottom: 10px;
+}
+
+.noiva,
+.noivo {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    color: #556b2f;
+
+    font-size: 5rem;
+
+    font-weight: 600;
+    letter-spacing: 0.9px;
+}
+
+.alianca {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    color: #9bb47a;
+    margin: 0 10px;
+    font-weight: 400;
+    position: relative;
+    top: -4px;
+    opacity: 0.9;
+}
+
+.subtitulo {
+
+    color: #8a8a8a;
+
+    font-size: 0.95rem;
+
+    margin-bottom: 25px;
+
+    margin-top: -5px;
+}
+
+/* Card agradecimento */
+.card-agradecimento {
+
+    display: flex;
+
+    gap: 15px;
+
+    background: #f7f8f2;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    margin: 25px 0;
+
+    align-items: center;
+
+    text-align: left;
+}
+
+.icone-card {
+
+    min-width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    background: #dfe9c8;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1.4rem;
+
+    color: #556b2f;
+}
+
+.card-agradecimento h3 {
+
+    margin: 0;
+
+    color: #556b2f;
+
+    font-size: 1rem;
+}
+
+.card-agradecimento p {
+
+    margin-top: 5px;
+
+    color: #777;
+
+    font-size: 0.85rem;
+
+    line-height: 1.4;
+}
+
+/* Formulário */
+.label {
+
+    display: block;
+
+    text-align: left;
+
+    font-size: 0.85rem;
+
+    color: #63783D;
+
+    margin: 15px 0 8px 5px;
+
+    font-weight: 600;
+}
+
+.label i {
+
+    margin-right: 8px;
+
+    color: #7FA653;
+}
+
+input {
+    font-family: 'Poppins', sans-serif;
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    margin-bottom: 15px;
+
+    border-radius: 16px;
+
+    border: 1.5px solid #dfe9c8;
+
+    background: #fcfdfa;
+
+    box-sizing: border-box;
+
+    transition: 0.3s;
+
+    font-size: 14px;
+
+    color: #556b2f;
+}
+
+input:focus {
+
+    outline: none;
+
+    border-color: #7FA653;
+
+    box-shadow: 0 0 0 4px rgba(127, 166, 83, 0.12);
+}
+
+/* Botões de valores */
+.valores {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin: 15px 0 25px 0;
+}
+
+.valores button {
+
+    flex: 1;
+
+    background-color: #edf2e2;
+
+    color: #556b2f;
+
+    padding: 14px 5px;
+
+    font-size: 0.8rem;
+
+    border: none;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.valores button:hover {
+
+    background-color: #63783D;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+/* Botão principal */
+.submit {
+
+    background-color: #63783D;
+
+    color: white;
+
+    width: 100%;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    border: none;
+
+    text-transform: uppercase;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    box-shadow: 0 10px 20px rgba(99, 120, 61, 0.2);
+
+    font-size: 0.9rem;
+}
+
+.submit i {
+
+    margin-right: 8px;
+}
+
+.submit:hover {
+
+    background-color: #4a5a2e;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 14px 25px rgba(99, 120, 61, 0.25);
+}
+
+/* Painel dos noivos */
+.painel-noivos {
+
+    margin-top: 30px;
+
+    border-top: 1px solid #eeeeee;
+
+    padding-top: 20px;
+}
+
+.painel-noivos a {
+
+    color: #63783D;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.painel-noivos a:hover {
+
+    color: #4a5a2e;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+
+    .container {
+        padding: 25px;
+    }
+
+    .valores {
+        flex-wrap: wrap;
+    }
+
+    .valores button {
+        min-width: 45%;
+    }
+}

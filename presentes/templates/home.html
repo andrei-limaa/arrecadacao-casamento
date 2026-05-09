@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jefferson & Carla 💍</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Logo -->
+        <h1 class="logo-casamento">
+
+            <span class="noiva">Carla</span>
+
+            <span class="alianca">
+                &
+            </span>
+
+            <span class="noivo">Jefferson</span>
+
+        </h1>
+
+        <!-- Card -->
+        <div class="card-agradecimento">
+
+            <div class="icone-card">
+
+                <i class="fa-solid fa-gift"></i>
+
+            </div>
+
+            <div>
+
+                <p>
+                    Sua contribuição nos ajuda a realizar nosso grande sonho 💚
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Formulário -->
+        <form method="post">
+
+            {% csrf_token %}
+
+            <!-- Nome -->
+            <label for="nome" class="label">
+
+                <i class="fa-solid fa-user"></i>
+
+                Seu nome completo
+
+            </label>
+
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+
+            <!-- Valor -->
+            <label for="valor" class="label">
+
+                <i class="fa-solid fa-money-bill"></i>
+
+                Valor da contribuição
+
+            </label>
+
+            <input type="number" id="valor" name="valor" min="1" placeholder="Valor mínimo R$ 1" required>
+
+            <!-- Valores rápidos -->
+            <div class="valores">
+
+                <button type="button" onclick="setValor(200)">
+                    R$ 200
+                </button>
+
+                <button type="button" onclick="setValor(250)">
+                    R$ 250
+                </button>
+
+                <button type="button" onclick="setValor(300)">
+                    R$ 300
+                </button>
+
+                <button type="button" onclick="setValor(500)">
+                    R$ 500
+                </button>
+
+            </div>
+
+            <!-- Botão -->
+            <button class="submit" type="submit">
+
+                <i class="fa-solid fa-gift"></i>
+
+                Gerar Pix
+
+            </button>
+
+        </form>
+
+        <!-- Painel -->
+        <div class="painel-noivos">
+
+            <a href="{% url 'lista' %}">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Acessar Painel dos Noivos
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        function setValor(valor) {
+
+            document.getElementById("valor").value = valor;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

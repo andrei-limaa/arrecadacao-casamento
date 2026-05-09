@@ -1,0 +1,383 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pagamento Pix 💍</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .container {
+
+            max-width: 430px;
+
+            padding: 40px 30px;
+
+            border-radius: 30px;
+
+            text-align: center;
+        }
+
+        .titulo-pagamento {
+
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #556b2f;
+
+            font-size: 2.3rem;
+
+            margin-bottom: 10px;
+
+            line-height: 1.2;
+        }
+
+        .titulo-pagamento i {
+
+            font-size: 2.1rem;
+
+            position: relative;
+
+            margin-right: 8px;
+
+            color: #63783D;
+        }
+
+        .texto-agradecimento {
+
+            color: #777;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+        }
+
+        .valor-box {
+            background: #f7f8f2;
+            border: 1px solid #dfe9c8;
+            border-radius: 20px;
+            padding: 12px 14px;
+            margin-bottom: 25px;
+        }
+
+        .valor-box span {
+            display: block;
+            color: #7FA653;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .valor-destaque {
+
+            font-size: 2rem;
+
+            color: #556b2f;
+
+            font-weight: bold;
+        }
+
+        .qr-area {
+
+            background: white;
+
+            padding: 25px;
+
+            border: 1px solid #dfe9c8;
+
+            border-radius: 25px;
+
+            margin: 25px 0;
+
+            box-shadow: 0 10px 20px rgba(99, 120, 61, 0.08);
+        }
+
+        .qr-topo {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+
+            color: #556b2f;
+
+            font-weight: 600;
+        }
+
+        .qr-area img {
+
+            width: 100%;
+
+            max-width: 180px;
+
+            display: block;
+
+            margin: auto;
+        }
+
+        .pix-label {
+
+            color: #556b2f;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            margin-bottom: 12px;
+
+            margin-top: 10px;
+        }
+
+        .pix-display-box {
+
+            width: 100%;
+
+            background: #fcfdfa;
+
+            border: 1.5px solid #dfe9c8;
+
+            padding: 15px 12px;
+
+            border-radius: 18px;
+
+            font-family: 'Courier New', monospace;
+
+            font-size: 12px;
+
+            color: #556b2f;
+
+            word-break: break-all;
+
+            text-align: center;
+
+            line-height: 1.7;
+
+            box-sizing: border-box;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            overflow-wrap: break-word;
+
+            letter-spacing: 0.5px;
+        }
+
+        .pix-display-box:hover {
+
+            border-color: #7FA653;
+
+            background: #f7f8f2;
+        }
+
+        .submit {
+
+            margin-top: 18px;
+        }
+
+        .submit i {
+
+            margin-right: 8px;
+        }
+
+        .voltar {
+
+            margin-top: 30px;
+        }
+
+        .voltar a {
+
+            color: #7FA653;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .voltar a:hover {
+
+            opacity: 0.7;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Título -->
+        <h1 class="titulo-pagamento">
+
+            <i class="fa-solid fa-heart"></i>
+
+            Obrigado, {{ nome }}!
+
+        </h1>
+
+        <p class="texto-agradecimento">
+
+            Sua contribuição para
+            <strong>Jefferson & Carla</strong>
+            é muito especial 💚
+
+        </p>
+
+        <!-- Valor -->
+        <div class="valor-box">
+
+            <span>
+
+                <i class="fa-solid fa-wallet"></i>
+
+                Valor da contribuição
+
+            </span>
+
+            <div class="valor-destaque">
+                R$ {{ valor }}
+            </div>
+
+        </div>
+
+        <!-- QR Code -->
+        <div class="qr-area">
+
+            <div class="qr-topo">
+
+                <i class="fa-solid fa-qrcode"></i>
+
+                Escaneie o QR Code
+
+            </div>
+
+            <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code Pix">
+
+        </div>
+
+        <!-- Pix copia e cola -->
+        <p class="pix-label">
+
+            <i class="fa-solid fa-copy"></i>
+
+            Ou utilize o Pix Copia e Cola
+
+        </p>
+
+        <div class="pix-display-box" id="pixCard" onclick="copiarPix()">
+
+            {{ pix_code }}
+
+        </div>
+
+        <!-- Botão -->
+        <button class="submit" onclick="copiarPix()">
+
+            <i class="fa-solid fa-copy"></i>
+
+            COPIAR CÓDIGO PIX
+
+        </button>
+
+        <!-- Voltar -->
+        <div class="voltar">
+
+            <a href="{% url 'resetar_pix' %}">
+                <i class="fa-solid fa-arrow-left"></i>
+                Voltar ao início
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Script -->
+    <script>
+
+        function copiarPix() {
+
+            const texto = `{{ pix_code }}`;
+
+            if (navigator.clipboard) {
+
+                navigator.clipboard.writeText(texto).then(() => darFeedback());
+
+            } else {
+
+                const tempInput = document.createElement("input");
+
+                tempInput.value = texto;
+
+                document.body.appendChild(tempInput);
+
+                tempInput.select();
+
+                document.execCommand("copy");
+
+                document.body.removeChild(tempInput);
+
+                darFeedback();
+            }
+        }
+
+        function darFeedback() {
+
+            const card = document.getElementById("pixCard");
+
+            card.style.borderColor = "#63783D";
+
+            card.style.background = "#eef3e3";
+
+            const botao = document.querySelector(".submit");
+
+            botao.innerHTML = `
+                <i class="fa-solid fa-check"></i>
+                PIX COPIADO
+            `;
+
+            setTimeout(() => {
+
+                card.style.borderColor = "#dfe9c8";
+
+                card.style.background = "#fcfdfa";
+
+                botao.innerHTML = `
+                    <i class="fa-solid fa-copy"></i>
+                    COPIAR CÓDIGO PIX
+                `;
+
+            }, 1800);
+        }
+
+    </script>
+
+</body>
+
+</html>

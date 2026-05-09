@@ -1,0 +1,16 @@
+asgiref==3.11.1
+certifi==2026.4.22
+charset-normalizer==3.4.7
+colorama==0.4.6
+crcmod==1.7
+Django==6.0.5
+idna==3.13
+mercadopago==2.4.0
+mysqlclient==2.2.8
+pillow==12.2.0
+python-dotenv==1.2.2
+qrcode==8.2
+requests==2.33.1
+sqlparse==0.5.5
+tzdata==2026.2
+urllib3==2.7.0
