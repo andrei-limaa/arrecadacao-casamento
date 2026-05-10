@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Jefferson & Carla 💍</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -58,6 +59,11 @@
             </div>
 
         </div>
+        {% if erro %}
+        <div class="erro">
+            {{ erro }}
+        </div>
+        {% endif %}
 
         <!-- Formulário -->
         <form method="post">
@@ -84,7 +90,7 @@
 
             </label>
 
-            <input type="number" id="valor" name="valor" min="1" placeholder="Valor mínimo R$ 1" required>
+            <input type="number" id="valor" name="valor" min="150" placeholder="Valor mínimo R$ 150" required>
 
             <!-- Valores rápidos -->
             <div class="valores">

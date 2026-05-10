@@ -39,6 +39,10 @@ def home(request):
         try:
             nome = request.POST.get("nome")
             valor = Decimal(request.POST.get("valor"))
+            if valor < 150:
+                return render(request, 'home.html', {
+        'erro': 'O valor mínimo da contribuição é R$ 150.'
+    })      
 
             contribuicao = Contribuicao.objects.create(
                 nome=nome,
