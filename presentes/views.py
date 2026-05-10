@@ -1,13 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Contribuicao
 from django.conf import settings
 from django.db.models import Sum
 from decimal import Decimal
 import mercadopago
-from django.shortcuts import redirect
-sdk = mercadopago.SDK(settings.MERCADO_PAGO_ACCESS_TOKEN)
 from django.http import HttpResponse
 import json
+
+
+def get_mercadopago_sdk():
+    return mercadopago.SDK(settings.MERCADO_PAGO_ACCESS_TOKEN)
 
 
 def home(request):
@@ -53,7 +55,7 @@ def home(request):
                 }
             }
 
-            pagamento = sdk.payment().create(pagamento_data)
+            pagamento = get_mercadopago_sdk().payment().create(pagamento_data)
             dados = pagamento["response"]
 
             contribuicao.pagamento_id = dados["id"]
@@ -131,7 +133,7 @@ def webhook_mercadopago(request):
                 return HttpResponse(status=400)
 
             # Busca pagamento no Mercado Pago
-            pagamento = sdk.payment().get(pagamento_id)
+            pagamento = get_mercadopago_sdk().payment().get(pagamento_id)
             status_pagamento = pagamento["response"]["status"]
 
             if status_pagamento == "approved":
