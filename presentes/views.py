@@ -6,6 +6,7 @@ from decimal import Decimal
 import mercadopago
 from django.http import HttpResponse
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 def get_mercadopago_sdk():
@@ -119,35 +120,51 @@ def resetar_pix(request):
     return redirect('home')
 
 
+@csrf_exempt
 def webhook_mercadopago(request):
     """
     Recebe notificações do Mercado Pago
     """
+
+    print("WEBHOOK RECEBIDO")
+
     if request.method == "POST":
         try:
             data = json.loads(request.body)
 
+            print(data)
+
             pagamento_id = data.get("data", {}).get("id")
+
+            print("ID:", pagamento_id)
 
             if not pagamento_id:
                 return HttpResponse(status=400)
 
-            # Busca pagamento no Mercado Pago
             pagamento = get_mercadopago_sdk().payment().get(pagamento_id)
+
             status_pagamento = pagamento["response"]["status"]
 
+            print("STATUS:", status_pagamento)
+
             if status_pagamento == "approved":
+
                 contribuicao = Contribuicao.objects.filter(
                     pagamento_id=str(pagamento_id)
                 ).first()
+
+                print("CONTRIBUIÇÃO:", contribuicao)
 
                 if contribuicao:
                     contribuicao.status = "Pago"
                     contribuicao.save()
 
+                    print("PAGAMENTO SALVO")
+
             return HttpResponse(status=200)
 
         except Exception as e:
+            print("ERRO:", e)
             return HttpResponse(status=500)
 
     return HttpResponse(status=405)
